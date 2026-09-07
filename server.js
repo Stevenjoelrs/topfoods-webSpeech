@@ -69,6 +69,11 @@ const server = http.createServer(async (req, res) => {
         res.writeHead(200, { "Content-Type": MIME[ext] || "text/plain" });
         stream.pipe(res);
     });
+
+    stream.on("error", () => {
+        res.writeHead(404);
+        res.end("Not Found");
+    });
 });
 
 server.listen(3000, () => {
