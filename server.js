@@ -1,13 +1,8 @@
-import http from "node:http";
-import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import express from "express";
 import helmet from "helmet";
-import dotenv from "dotenv";
 import { insertFood, getAllFoods, closePool } from "./db.js";
-
-dotenv.config();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.join(__dirname, "public");
@@ -46,7 +41,10 @@ app.post("/api/foods", async (req, res) => {
   }
 });
 
-const server = http.createServer(app);
+const server = app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Entorno: ${process.env.NODE_ENV || "development"}`);
+});
 
 async function shutdown() {
   console.log("\nCerrando servidor...");
@@ -56,8 +54,3 @@ async function shutdown() {
 
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
-
-server.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-  console.log(`Entorno: ${process.env.NODE_ENV || "development"}`);
-});

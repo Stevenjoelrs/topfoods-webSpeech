@@ -1,0 +1,654 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage[table]{xcolor}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, finally, for, function, if, in, instanceof, new, return, switch, this, throw, try, typeof, var, void, while, with, let, const},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{gray}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+% Configuración para los bloques de código
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    tabsize=2,
+    showstringspaces=false,
+    extendedchars=true,
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {Ñ}{{\~N}}1
+}
+
+\title{\vspace{-2cm}\textbf{UNIVERSIDAD MAYOR DE SAN SIMÓN}\\ Facultad de Ciencias y Tecnología \\ Carrera de Ingeniería Informática}
+\author{ESTUDIANTE: Steven Joel Ramos Salazar}
+\date{FECHA: 18/09/2026 \\ COCHABAMBA - BOLIVIA}
+
+\begin{document}
+\maketitle
+
+\section*{Materia: Sistemas de Información 2}
+
+\subsection*{Gráfico de las User Stories y ROI}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Scatterplot.pdf}
+    \caption{Gráfico de Complejidad vs. Importancia}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{exe-ROI.pdf}
+\end{figure}
+
+% ==========================================
+% T3 CARTA COMPROMISO
+% ==========================================
+\section*{T3 Carta Compromiso}
+
+\begin{center}
+    \Large\textbf{CONTRATO Y ACUERDO DE TRABAJO EN EQUIPO}
+\end{center}
+
+\textbf{Materia:} Sistemas de Información 2 \\
+\textbf{Institución:} Universidad Mayor de San Simón (UMSS) \\
+\textbf{Proyecto:} Sistema Web para el Seguro Social Universitario (SSU - UMSS) \\
+\textbf{Alcance del Sistema:} Módulo Estudiantil y Módulo de Administración
+
+\subsection*{1. Integrantes y Horarios de Conexión}
+Dado que los 6 miembros del equipo cuentan con disponibilidades horarias heterogéneas, se establece una metodología de trabajo asíncrona prioritaria apoyada en puntos de encuentro sincrónicos obligatorios para la planificación y revisión de los incrementos del proyecto.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\hline
+\rowcolor{gray!20} \textbf{Integrante} & \textbf{Rol Principal} & \textbf{Horario Habitual} & \textbf{Sistema Operativo} \\
+\hline
+Jose Armando Figueredo Mancilla & Product Owner / Fullstack / QA & Flexible / Noches (20:00 - 23:00) & Linux/Windows \\
+\hline
+Steven Joel Ramos Salazar & DB Admin / Backend / QA & Tardes (16:00-20:00) & Linux/macOS \\
+\hline
+Joyce Angie Fernández Quispe & Fullstack Developer / QA & Flexible Tardes (5:00-6:00) & Linux/MacOS \\
+\hline
+Camila Araoz Soliz & Fullstack Developer & Flexible Noches (21:00-23:00) & Windows \\
+\hline
+Ximena & Frontend Developer & \textit{No especificado} & \textit{No especificado} \\
+\hline
+Wendy Puma Uribe & Backend / QA Developer & Flexible Tardes (15:00-18:00) & Windows \\
+\hline
+\end{tabularx}
+\end{table}
+
+\subsection*{2. Compromisos y Reglas del Equipo}
+\subsubsection*{2.1. Puntualidad y Cumplimiento de Fechas (Deadlines)}
+\begin{itemize}
+    \item \textbf{Tolerancia:} Se establece una tolerancia máxima de 10 minutos para las reuniones sincrónicas programadas.
+    \item \textbf{Notificación Previa:} En caso de indisponibilidad o choque de horarios, el integrante debe notificar al equipo en el canal oficial con al menos 2 horas de anticipación.
+    \item \textbf{Congelamiento de Código (Code Freeze):} Las Historias de Usuario asignadas a un Sprint deben estar completadas, probadas e integradas 24 horas antes de la fecha/hora de entrega dictada por la materia.
+\end{itemize}
+
+\subsubsection*{2.2. Ceremonias y Comunicación Sincrónica/Asincrónica}
+\begin{itemize}
+    \item \textbf{Daily Asíncrono (Diario):} Cada miembro debe responder en el chat oficial antes de las 22:00: 1) ¿Qué avance se realizó? 2) ¿Qué tarea se abordará a continuación? 3) ¿Existe algún bloqueo técnico?
+    \item \textbf{Sprint Review y Retrospectiva (Semanal):} Sesión fija de 30 a 45 minutos para probar el funcionamiento del portal web, auditar los endpoints de la API y validar flujos.
+\end{itemize}
+
+\subsection*{3. Entorno Tecnológico y Versiones Oficiales Estables}
+Para asegurar la compatibilidad entre Windows, macOS y Arch Linux, se estandariza el stack tecnológico:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{4cm}|p{3.5cm}|X|}
+\hline
+\rowcolor{gray!20} Herramienta / Librería & Versión Estándar & Propósito y Notas Técnicas \\
+\hline
+Gestor de Paquetes & pnpm v12.4.2 & Instalaciones eficientes en disco y bloqueo en pnpm-lock.yaml. \\
+\hline
+Entorno de Ejecución & Node.js v24.x LTS & Uso de ejecución nativa, soporte de watch y estabilidad SQL. \\
+\hline
+Vite & 8.3.0 & Construcción rápida, empaquetado y soporte nativo. \\
+\hline
+Base de Datos Única & Supabase (PostgreSQL 16) & Instancia Cloud compartida por los 6 integrantes. \\
+\hline
+Driver de Conexión DB & pg v8.23.x & Conexión SQL directa mediante Pool (sin ORM). \\
+\hline
+Framework / Seguridad & express v5.2.x / helmet v8.x / cors v2.8.x & Servidor web REST y protección con cabeceras de seguridad. \\
+\hline
+Contenedorización / IDE & Docker Engine / VS Code & Homogeneización de entornos y extensiones compartidas. \\
+\hline
+\end{tabularx}
+\end{table}
+
+\textbf{Configuración Oficial de Dependencias (package.json):}
+\begin{lstlisting}[language=JavaScript]
+{
+  "name": "ssu-umss-web",
+  "version": "1.0.0",
+  "description": "Sistema Web para el Seguro Social Universitario SSU UMSS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node-watch server.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "pg": "^8.23.0"
+  }
+}
+\end{lstlisting}
+
+\subsection*{4. Reglas de Base de Datos Única Cloud (Supabase)}
+\begin{enumerate}
+    \item \textbf{Instancia Centralizada:} Los integrantes conectarán a Supabase mediante \texttt{DATABASE\_URL} en su \texttt{.env}.
+    \item \textbf{Protección de Credenciales:} Estrictamente prohibido subir el \texttt{.env} a Git.
+    \item \textbf{Gestión de Migraciones y DDL:} Prohibido alterar el esquema desde la interfaz gráfica sin consentimiento. Los cambios van en \texttt{/db/migrations/}. El DB Admin ejecuta migraciones finales.
+\end{enumerate}
+
+\subsection*{5. Flujo de Trabajo en Git y Control de Versiones}
+\textbf{Estructura de Ramas:} \texttt{main}, \texttt{develop}, y ramas de trabajo (\texttt{feature/us-afiliacion}, etc.). \\
+\textbf{Reglas de Pull Request (PR):} Prohibido push directo a \texttt{main} o \texttt{develop}. Todo PR requiere aprobación (Code Review) y no debe romper \texttt{pnpm dev} ni la BD.
+
+\subsection*{6. Resolución de Conflictos y Sanciones}
+\begin{enumerate}
+    \item \textbf{Inasistencias:} Ante dos faltas injustificadas se redistribuyen historias y se notifica al Ingeniero.
+    \item \textbf{Compatibilidad (Cross-Platform):} Configurar Git con finales de línea LF (\texttt{git config core.autocrlf input} o \texttt{true}).
+\end{enumerate}
+
+% ==========================================
+% T2.X CODIGO DE SOPITAS DE MANI APLICANDO EL COMPROMISO
+% ==========================================
+\section*{T2.X Código de Sopitas de Maní (Aplicando el Compromiso)}
+
+El código SQL que usé es este, usé BIGINT para que no haya un problema con el límite de elementos en la lista y para los errores en que el dictado use mayúsculas, minúsculas y no se cuenten como repetidos opte por directamente que se reciban en minúsculas:
+
+\begin{lstlisting}[language=SQL, title=Código SQL]
+CREATE TABLE IF NOT EXISTS dishes(
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    difficulty INTEGER NOT NULL,
+    CONSTRAINT dishes_name_lower_unique UNIQUE (LOWER(name))
+);
+\end{lstlisting}
+
+\textbf{/public/app.js} aquí controlo la lógica para el uso de webSpeech en el frontend:
+
+\begin{lstlisting}[language=JavaScript, title=app.js]
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+recognition.lang = "es-ES";
+recognition.continuous = false;
+recognition.interimResults = false;
+
+const btnMic = document.getElementById("btn-mic");
+const statusEl = document.getElementById("status");
+const alertEl = document.getElementById("alert");
+const tbody = document.getElementById("foods-body");
+
+btnMic.addEventListener("click", () => {
+    recognition.start();
+    statusEl.textContent = "... ... ...";
+})
+
+recognition.onresult = async (event) => {
+    const raw = event.results[0][0].transcript.trim();
+    const transcript = raw.replace(/[.,;:!?]+$/g, "");
+    statusEl.textContent = transcript;
+
+    const parts = transcript.split(" ");
+    const last = parts.pop();
+    const value = parseInt(last, 10);
+    const name = parts.join(" ");
+
+    if (!name || isNaN(value)) {
+        showAlert("inteligible, repite");
+        return;
+    }
+    await registerFood(name, value);
+};
+
+recognition.onerror = (e) => {
+    statusEl.textContent = "error: " + e.error;
+};
+
+recognition.onend = () => {
+    if (statusEl.textContent.includes("... ... ...")) {
+        statusEl.textContent = "";
+    }
+};
+
+async function registerFood(name, value) {
+    const res = await fetch("/api/foods", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, value }),
+    });
+
+    if (res.status == 409) {
+        showAlert(`"${name}" ya esta registrado`, "red");
+    } else if (res.ok) {
+        showAlert(`"${name}", ${value}`);
+        loadFoods();
+    }
+}
+
+async function loadFoods() {
+    const res = await fetch("/api/foods");
+    const foods = await res.json();
+
+    tbody.innerHTML = "";
+    for (const f of foods) {
+        const tr = document.createElement("tr");
+
+        const tdName = document.createElement("td");
+        tdName.textContent = f.name;
+
+        const tdValue = document.createElement("td");
+        tdValue.textContent = f.value;
+
+        tr.append(tdName, tdValue);
+        tbody.appendChild(tr);
+    }
+}
+
+function showAlert(msg, color = "black") {
+    alertEl.textContent = msg;
+    alertEl.style.color = color;
+    setTimeout(() => (alertEl.textContent = ""), 3000);
+}
+
+loadFoods();
+\end{lstlisting}
+\newpage
+\textbf{/public/index.html} creación de la tabla y botón para activar el micrófono:
+
+\begin{lstlisting}[language=HTML, title=index.html]
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TopComidas</title>
+</head>
+
+<body>
+    <h1>
+        Top Comidas Tipicas de Bolivia
+    </h1>
+    <button id="btn-mic">Hablar</button>
+    <span id="status"></span>
+    <table border="1" id="foods-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>N#</th>
+            </tr>
+        </thead>
+        <tbody id="foods-body">
+        </tbody>
+    </table>
+
+    <p id="alert"></p>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
+\end{lstlisting}
+
+\textbf{/db.js}
+
+\begin{lstlisting}[language=JavaScript, title=db.js]
+import pg from "pg";
+
+const { Pool } = pg;
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+});
+
+pool.on("error", (err) => {
+  console.error("Error inesperado en pool de PG:", err);
+});
+
+export async function insertFood(name, value) {
+  const result = await pool.query(
+    `INSERT INTO dishes (name, difficulty) VALUES ($1, $2)
+     ON CONFLICT (name) DO NOTHING
+     RETURNING id, name, difficulty as value`,
+    [name, value]
+  );
+  return result.rows[0] || null;
+}
+
+export async function getAllFoods() {
+  const result = await pool.query(
+    `SELECT id, name, difficulty as value FROM dishes ORDER BY id DESC`
+  );
+  return result.rows;
+}
+
+export async function closePool() {
+  await pool.end();
+}
+\end{lstlisting}
+
+\subsection*{Nuevas Modificaciones y Estructura del Proyecto}
+En base a los últimos cambios, se ha ampliado y modularizado la arquitectura del repositorio \texttt{topfoods-webSpeech-main}. Se han incorporado herramientas de contenerización (Docker), empaquetado y construcción (Vite), gestión moderna de monorepositorios (pnpm workspaces) y separación de migraciones de base de datos. 
+
+\subsection*{docker-compose.yml}
+\begin{lstlisting}[language=docker]
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: topfoods-app
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - NODE_ENV=production
+      - PORT=3000
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+\end{lstlisting}
+\subsection*{Dockerfile}
+\begin{lstlisting}
+FROM node:24-alpine
+RUN corepack enable && corepack prepare pnpm@12 --activate
+WORKDIR /app
+COPY package.json pnpm-lock.yaml* ./
+RUN pnpm install --prod --frozen-lockfile
+
+COPY . .
+
+EXPOSE 3000
+
+ENV NODE_ENV=production
+ENV PORT=3000
+
+CMD ["node", "server.js"]
+\end{lstlisting}
+\subsection*{server.js}
+\begin{lstlisting}[language=JavaScript]
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import express from "express";
+import helmet from "helmet";
+import { insertFood, getAllFoods, closePool } from "./db.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const PUBLIC = path.join(__dirname, "public");
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(helmet());
+app.use(express.json());
+app.use(express.static(PUBLIC));
+
+app.get("/api/foods", async (req, res) => {
+  try {
+    const foods = await getAllFoods();
+    res.json(foods);
+  } catch (err) {
+    console.error("GET /api/foods error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.post("/api/foods", async (req, res) => {
+  try {
+    const { name, value } = req.body;
+    if (!name || typeof value !== "number") {
+      return res.status(400).json({ error: "Invalid payload" });
+    }
+    const inserted = await insertFood(name, value);
+    if (!inserted) {
+      return res.status(409).json({ error: "duplicated" });
+    }
+    res.json({ ok: true, food: inserted });
+  } catch (err) {
+    console.error("POST /api/foods error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+const server = app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Entorno: ${process.env.NODE_ENV || "development"}`);
+});
+
+async function shutdown() {
+  console.log("\nCerrando servidor...");
+  await closePool();
+  server.close(() => process.exit(0));
+}
+
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);
+\end{lstlisting}
+\newpage
+\subsection*{vite.config}
+\begin{lstlisting}
+import { defineConfig } from "vite";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+
+export default defineConfig({
+  root: "public",
+  publicDir: "../public/assets",
+  build: {
+    outDir: "../dist/public",
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "public/index.html"),
+      },
+    },
+  },
+  server: {
+    port: 5173,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+    },
+  },
+});
+\end{lstlisting}
+\subsection*{La estructura final de archivos y directorios es la siguiente:}
+
+\begin{lstlisting}[title=Estructura del Directorio]
+topfoods-webSpeech-main/
+|-- .env.example
+|-- .gitattributes
+|-- .gitignore
+|-- Dockerfile
+|-- LICENSE
+|-- database.sql
+|-- db.js
+|-- docker-compose.yml
+|-- package.json
+|-- pnpm-lock.yaml
+|-- pnpm-workspace.yaml
+|-- server.js
+|-- vite.config.js
+|-- db/
+|   `-- migrations/
+|       `-- 001_init.sql
+`-- public/
+    |-- app.js
+    `-- index.html
+\end{lstlisting}
+\newpage
+\subsection*{Tiempo de Ejecución}
+El tiempo que me tomo hacer el trabajo fue este:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img2.png}
+    \caption{Captura del Cronómetro}
+\end{figure}
+
+\subsection*{Para la prioridad tuvimos un presupuesto de 2000Bs}
+
+% US-01
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{4cm}|X|}
+\hline
+\rowcolor{gray!20} \multicolumn{2}{|c|}{\textbf{US-01 - Afiliación Semestral al Seguro}} \\
+\hline
+Rol principal & Estudiante \\
+\hline
+Historia de usuario & Yo como estudiante, \newline Quiero solicitar mi afiliación semestral, \newline Para obtener la cobertura de atención en el seguro universitario. \\
+\hline
+Condiciones previas \newline (Pre-condiciones) & 1. Debo haber comprado mi matrícula universitaria y estar inscrito en el semestre actual (registrado en el WebSIS). \newline 2. No debo estar afiliado a otro ente gestor de salud a corto plazo (como la Caja Nacional de Salud). \newline 3. Debo contar con mi Código SIS y Cédula de Identidad a la mano. \\
+\hline
+Condiciones posteriores \newline (Post-condiciones) & 1. Mi estado en la base de datos del SSU se actualiza de "Inactivo" a "Habilitado". \newline 2. Quedo autorizado para reservar fichas médicas y ser atendido en cualquier especialidad durante todo el semestre. \\
+\hline
+Criterios de aceptación & 1. Permite ingresar la matrícula y la cédula de identidad para verificar la condición de estudiante activo. \newline 2. Al confirmar el registro, la cuenta pasa a estado afiliado con cobertura activa. \newline 3. Muestra una advertencia cuando la matrícula ya cuenta con una afiliación activa en el periodo actual. \\
+\hline
+Valoración: & 5 \\
+\hline
+Prioridad: & Bs. 450 \\
+\hline
+\end{tabularx}
+\end{table}
+
+% US-03
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{4cm}|X|}
+\hline
+\rowcolor{gray!20} \multicolumn{2}{|c|}{\textbf{US-03 - Reserva de Ficha de Atención Médica}} \\
+\hline
+Rol principal & Estudiante afiliado \\
+\hline
+Historia de usuario & Yo como estudiante afiliado, \newline Quiero reservar un turno de atención médica de medicina general, \newline Para asegurar la consulta con un médico. \\
+\hline
+Condiciones previas \newline (Pre-condiciones) & 1. Debo estar correctamente habilitado como estudiante en el SSU. \newline 2. No debo tener bloqueos o sanciones por haber faltado a consultas anteriores sin cancelar (inasistencia). \\
+\hline
+Condiciones posteriores \newline (Post-condiciones) & 1. La ficha médica queda reservada exclusivamente a mi nombre (con mi Código SIS). \newline 2. Se resta automáticamente un cupo de la agenda de fichas disponibles para ese día. \\
+\hline
+Criterios de aceptación & 1. Muestra los turnos e intervalos de horario disponibles por médico tratante. \newline 2. Impide la reserva de más de una ficha para la misma fecha. \newline 3. Al confirmar la selección, emite la ficha de atención con el turno reservado. \\
+\hline
+Valoración: & 5 \\
+\hline
+Prioridad: & Bs. 430 \\
+\hline
+\end{tabularx}
+\end{table}
+
+% US-13
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{4cm}|X|}
+\hline
+\rowcolor{gray!20} \multicolumn{2}{|c|}{\textbf{US-13 - Seguimiento de Orden de Laboratorio y Obtención de Resultados}} \\
+\hline
+Rol principal & Estudiante \\
+\hline
+Historia de usuario & Yo como estudiante, \newline Quiero dar seguimiento al estado de mi examen de laboratorio y acceder al informe final, \newline Para conocer los resultados dictaminados por el médico. \\
+\hline
+Condiciones previas \newline (Pre-condiciones) & 1. Debo haberme realizado la toma de muestras de laboratorio en el SSU con una orden médica previa. \newline 2. Los bioquímicos del SSU deben haber procesado y subido mis resultados al sistema central. \\
+\hline
+Condiciones posteriores \newline (Post-condiciones) & 1. Obtengo un documento que contiene los resultados detallados de mis análisis. \newline 2. La orden de laboratorio pasa al estado entregado en línea. \\
+\hline
+Criterios de aceptación & 1. Muestra las órdenes de laboratorio clasificadas únicamente en los estados: Solicitado, En Curso, Aceptado y Terminado. \newline 2. Al cambiar el estado a Terminado, se habilita un enlace que dirige a la descarga directa del informe de resultados. \newline 3. El enlace de descarga permanece activo únicamente para el estudiante titular de la orden. \\
+\hline
+Valoración: & 3 \\
+\hline
+Prioridad: & Bs. 240 \\
+\hline
+\end{tabularx}
+\end{table}
+
+% US-05
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{4cm}|X|}
+\hline
+\rowcolor{gray!20} \multicolumn{2}{|c|}{\textbf{US-05 - Verificación de Justificativo por Baja Médica}} \\
+\hline
+Rol principal & Estudiante \\
+\hline
+Historia de usuario & Yo como estudiante, \newline Quiero solicitar el código de verificación de un reposo médico autorizado, \newline Para que las autoridades académicas certifiquen la validez de la baja médica. \\
+\hline
+Condiciones previas \newline (Pre-condiciones) & 1. Debo haber sido atendido presencialmente en el SSU (urgencias o consulta regular). \newline 2. El médico del SSU determinó que requiero reposo y registró los días de baja en mi historial. \\
+\hline
+Condiciones posteriores \newline (Post-condiciones) & 1. Se genera un certificado en PDF respaldado por la institución que especifica los días que tengo justificados. \newline 2. Puedo presentar este documento en formato impreso o digital a los docentes. \\
+\hline
+Criterios de aceptación & 1. Permite seleccionar una baja médica emitida y generar un código de verificación de temporalidad definida. \newline 2. El código muestra únicamente la validez del reposo y los días autorizados, manteniendo en reserva los datos del diagnóstico médico. \newline 3. Muestra el estado del permiso como válido o expirado. \\
+\hline
+Valoración: & 3 \\
+\hline
+Prioridad: & \\
+\hline
+\end{tabularx}
+\end{table}
+
+% US-07
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{4cm}|X|}
+\hline
+\rowcolor{gray!20} \multicolumn{2}{|c|}{\textbf{US-07 - Reagendamiento y Cancelación de Fichas Médicas}} \\
+\hline
+Rol principal & Estudiante \\
+\hline
+Historia de usuario & Yo como estudiante, \newline Quiero modificar o cancelar una reserva de ficha médica realizada previamente, \newline Para liberar la atención o cambiar de turno antes de la consulta. \\
+\hline
+Condiciones previas \newline (Pre-condiciones) & 1. Debo tener una reserva médica activa en el sistema. \newline 2. La solicitud de cancelación debe realizarse con al menos 2 horas de anticipación a la cita programada. \\
+\hline
+Condiciones posteriores \newline (Post-condiciones) & 1. La reserva de la ficha queda anulada y el cupo vuelve a estar disponible en el sistema de reservas generales. \newline 2. No se registra ninguna falta (inasistencia) en mi expediente. \\
+\hline
+Criterios de aceptación & 1. Muestra las fichas pendientes y permite elegir entre modificar el horario o cancelar la reserva. \newline 2. Al cancelar la reserva, el turno vuelve a estar disponible para otros estudiantes. \newline 3. Cambia el estado de la ficha a cancelada por el usuario. \\
+\hline
+Valoración: & 4 \\
+\hline
+Prioridad: & Bs. 90 \\
+\hline
+\end{tabularx}
+\end{table}
+
+
+\end{document}
