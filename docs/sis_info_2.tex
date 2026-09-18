@@ -25,6 +25,7 @@
   morestring=[b]"
 }
 
+% Configuración para los bloques de código
 \lstset{
     basicstyle=\ttfamily\footnotesize,
     breaklines=true,
@@ -60,7 +61,7 @@
 % ==========================================
 % CARTA COMPROMISO
 % ==========================================
-\section*{T3 Carta Compromiso}
+\section*{Carta Compromiso}
 
 \begin{center}
     \Large\textbf{CONTRATO Y ACUERDO DE TRABAJO EN EQUIPO}
@@ -145,13 +146,12 @@ Contenedorización / IDE & Docker Engine / VS Code & Homogeneización de entorno
   "description": "Sistema Web para el Seguro Social Universitario SSU UMSS",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node-watch server.js"
+    "start": "node --env-file=.env server.js",
+    "dev": "node --watch --env-file=.env server.js"
   },
   "license": "ISC",
+  "type": "module",
   "dependencies": {
-    "cors": "^2.8.6",
-    "dotenv": "^16.6.1",
     "express": "^5.2.1",
     "helmet": "^8.3.0",
     "pg": "^8.23.0"
@@ -187,9 +187,10 @@ El código SQL que usé es este, usé BIGINT para que no haya un problema con el
 CREATE TABLE IF NOT EXISTS dishes(
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    difficulty INTEGER NOT NULL,
-    CONSTRAINT dishes_name_lower_unique UNIQUE (LOWER(name))
+    difficulty INTEGER NOT NULL
 );
+
+CREATE UNIQUE INDEX IF NOT EXISTS dishes_name_lower_idx ON dishes(LOWER(name));
 \end{lstlisting}
 
 \textbf{/public/app.js} aquí controlo la lógica para el uso de webSpeech en el frontend:
@@ -335,7 +336,7 @@ pool.on("error", (err) => {
 export async function insertFood(name, value) {
   const result = await pool.query(
     `INSERT INTO dishes (name, difficulty) VALUES ($1, $2)
-     ON CONFLICT (name) DO NOTHING
+     ON CONFLICT ((LOWER(name))) DO NOTHING
      RETURNING id, name, difficulty as value`,
     [name, value]
   );
@@ -498,7 +499,6 @@ topfoods-webSpeech-main/
 |-- .gitignore
 |-- Dockerfile
 |-- LICENSE
-|-- database.sql
 |-- db.js
 |-- docker-compose.yml
 |-- package.json

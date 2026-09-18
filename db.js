@@ -14,7 +14,7 @@ pool.on("error", (err) => {
 export async function insertFood(name, value) {
   const result = await pool.query(
     `INSERT INTO dishes (name, difficulty) VALUES ($1, $2)
-     ON CONFLICT (name) DO NOTHING
+     ON CONFLICT ((LOWER(name))) DO NOTHING
      RETURNING id, name, difficulty as value`,
     [name, value]
   );
